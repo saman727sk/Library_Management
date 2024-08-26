@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .heading {
+            margin: 20px;
+        }
+
+        .main-div {
+            background-color: #fff;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            padding-top: 10px;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button.submit {
+            grid-column: 2 / 3;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #5cb85c;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .table_section {
+            margin: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .btn {
+            margin: 5px;
+            padding: 10px 15px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .btn a {
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Library Management</h1>
+    </header>
+    <div class="heading">
+        <h2>Book Management</h2>
+    </div>
+    <div class="main-div">
+        <h3>Add Books</h3>
+        <form id="main">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name">
+        
+            <label for="author">Author</label>
+            <input type="text" id="author" name="author">
+        
+            <label for="publisher">Publisher</label>
+            <input type="text" id="publisher" name="publisher">
+        
+            <label for="publishd">Publishing Date</label>
+            <input type="text" id="publishd" name="publishd">
+        
+            <button type="submit" class="submit">ADD BOOK</button>
+        </form>
+    </div>
+    
+    <div class="table_section">
+        <h3>Book List</h3>
+        <div id="book-list">
+            <!-- The books will be displayed here -->
+        </div>
+    </div>
+
+    <div class="footer">
+        <button class="btn"><a href="home.html">HOME</a></button>
+        <button class="btn"><a href="author.html">AUTHOR</a></button>
+        <button class="btn"><a href="publisher.html">PUBLISHER</a></button>
+    </div>
+
+    <script>
+        function displayBooks() {
+            const books = JSON.parse(localStorage.getItem('books')) || [];
+            const bookList = document.getElementById('book-list');
+
+            bookList.innerHTML = '';
+
+            if (books.length === 0) {
+                bookList.innerHTML = '<p>No books available.</p>';
+                return;
+            }
+
+            const table = document.createElement('table');
+            table.setAttribute('border', '1');
+            const headerRow = table.insertRow();
+
+            const headers = ['Name', 'Author', 'Publisher', 'Publishing Date', 'Actions'];
+            headers.forEach(headerText => {
+                const headerCell = document.createElement('th');
+                headerCell.textContent = headerText;
+                headerRow.appendChild(headerCell);
+            });
+
+            books.forEach((book, index) => {
+                const row = table.insertRow();
+                row.insertCell(0).textContent = book.name;
+                row.insertCell(1).textContent = book.author;
+                row.insertCell(2).textContent = book.publisher;
+                row.insertCell(3).textContent = book.publishd;
+
+                const actionsCell = row.insertCell(4);
+                const editButton = document.createElement('button');
+                editButton.textContent = 'Edit';
+                editButton.onclick = () => editBook(index);
+                actionsCell.appendChild(editButton);
+
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Delete';
+                deleteButton.onclick = () => deleteBook(index);
+                actionsCell.appendChild(deleteButton);
+            });
+
+            bookList.appendChild(table);
+        }
+
+        function addBook(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const author = document.getElementById('author').value;
+            const publisher = document.getElementById('publisher').value;
+            const publishd = document.getElementById('publishd').value;
+
+            const newBook = { name, author, publisher, publishd };
+
+            let books = JSON.parse(localStorage.getItem('books')) || [];
+            books.push(newBook);
+            localStorage.setItem('books', JSON.stringify(books));
+
+            document.getElementById('main').reset();
+            displayBooks();
+        }
+
+        function editBook(index) {
+            const books = JSON.parse(localStorage.getItem('books')) || [];
+            const book = books[index];
+
+            document.getElementById('name').value = book.name;
+            document.getElementById('author').value = book.author;
+            document.getElementById('publisher').value = book.publisher;
+            document.getElementById('publishd').value = book.publishd;
+
+            const submitButton = document.querySelector('.submit');
+            submitButton.textContent = 'Update Book';
+
+            document.getElementById('main').onsubmit = function(event) {
+                event.preventDefault();
+
+                books[index] = {
+                    name: document.getElementById('name').value,
+                    author: document.getElementById('author').value,
+                    publisher: document.getElementById('publisher').value,
+                    publishd: document.getElementById('publishd').value
+                };
+
+                localStorage.setItem('books', JSON.stringify(books));
+                document.getElementById('main').reset();
+                submitButton.textContent = 'ADD BOOK';
+                document.getElementById('main').onsubmit = addBook;
+                displayBooks();
+            };
+        }
+
+        function deleteBook(index) {
+            const books = JSON.parse(localStorage.getItem('books')) || [];
+            books.splice(index, 1);
+            localStorage.setItem('books', JSON.stringify(books));
+            displayBooks();
+        }
+
+        // Initial form submission setup
+        document.getElementById('main').onsubmit = addBook;
+
+        // Display books on page load
+        window.onload = displayBooks;
+    </script>
+</body>
+
+</html>

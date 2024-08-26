@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="LB.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>Library Management</h1>
+    </header>
+    <div class="heading">
+        <h2>HOME</h2>
+       
+    </div>
+    <div class="table_section">
+        <table>
+           <thead>
+                <tr>
+                    <td>SR NO.</td>
+                    <td>NAME</td>
+                    <td>AUTHOR</td>
+                    <td>PUBLISHER</td>
+                    <td>PUBLISH DATE</td>
+                    <td>action</td>
+                </tr>
+            </thead>
+
+    <tbody id="render-list">
+       
+    </tbody>
+    </table>
+    </div>
+
+    <div class="footer">
+        <button class="btn"><a href="form.html"> MAIN</a></button>
+        <button class="btn"><a href="author.html"> AURTHOR</a></button>
+        <button class="btn"><a href="publisher.html"> PUBLISHER</a></button>
+        
+          </div>
+          <script src="LB.js"></script>
+          <script>
+            renderBooksList();
+                
+                    </script>
+</body>
+</html>

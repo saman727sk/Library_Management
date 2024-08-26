@@ -1,0 +1,180 @@
+body{
+  font-family: Arial;
+  background-color: #f0f4e9;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+header{
+    background-color: blue;
+    color: rgb(5, 5, 5);
+    padding: 0;
+    margin: 0; 
+}
+h1{
+    display: block;
+    height: auto;
+    font-size: 60px;
+    margin: 0;
+    padding: 16px 20px;
+    text-align: left; 
+}
+ h2{
+    display: block;
+    height: auto;
+    font-size: 50px;
+    margin: 0;
+    padding: 16px 20px;
+    text-align: center; 
+ }
+ h3
+ {
+    display: block;
+    height: auto;
+    font-size: 40px;
+    margin: 0;
+    padding: 16px 20px;
+    text-align: center;
+ }
+ .main-div{
+
+  margin-top: 20px;
+  padding: 15px;
+  gap: 3px;
+  background-color: #dbe5d6;
+  border-radius: 8px;
+ 
+ }
+ 
+ form{
+  display: grid;
+    grid-template-columns: 1fr 1fr 1fr 2fr 1fr 1fr;
+    gap: 10px;  
+ }
+ form input{
+  width: 500px;
+  padding: 15px;
+
+ }
+ form label{
+  font-size: 40px;
+
+ }
+
+form button {
+  width: 100px;
+  grid-column:  4;
+  padding: 10px;
+  background-color: #2757bf;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 10px;
+  margin-top: 10px;
+
+  
+}
+.one{
+   grid-column:  3  ;
+  
+}
+.two{
+  grid-column: 4 ;
+}
+form button:hover {
+  background-color: #1826e6;
+}
+
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+
+.footer {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.footer p {
+  color: #e0e0e4;
+  margin: 10px 0;
+  font-size: 30px;
+}
+
+.footer button {
+  margin: 5px;
+  padding: 10px 20px;
+  background-color: #2510df;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 30PX;
+}
+
+.footer button:hover {
+  background-color: #e6e0db;
+}
+
+
+
+
+
+thead {
+  background-color: #1c18e7;
+  color: white;
+}
+
+thead th {
+  padding: 10px;
+  font-size: 1em;
+}
+
+tb td {
+  padding: 10px;
+  border-bottom: 1px solid #bdc3c7;
+  font-size: 0.9em;
+  color: #333;
+}
+
+tb tr:nth-child(even) {
+  background-color: #f5f5f5;
+}
+
+button.edit, button.delete {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: white;
+}
+
+button.edit {
+  background-color: #3498db;
+}
+
+button.delete {
+  background-color: #e74c3c;
+}
+
+button.edit:hover {
+  background-color: #2980b9;
+}
+
+button.delete:hover {
+  background-color: #c0392b;
+}
