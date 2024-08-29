@@ -1,0 +1,23 @@
+ 
+   {
+      "name": "Library Management",
+      "short_name": "LibraryApp",
+      "description": "Manage your books, authors, and publishers easily.",
+      "start_url": "/form.html",
+      "display": "standalone",
+      "background_color": "#f0f4e9",
+      "theme_color": "#2757bf",
+      "icons": [
+        {
+          "src": "/image/tw.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        },
+        {
+          "src": "/image/tw.png",
+          "sizes": "512x512",
+          "type": "image/png"
+        }
+      ]
+    }
+    
