@@ -58,7 +58,7 @@ function displayBooks() {
         // Append each row to the DOM
         bookList.appendChild(row);
         
-        return row;  // Map expects a returned value, but in this case, the return isn't used
+        return row;  
     });
 }
 document.addEventListener('DOMContentLoaded', displayBooks);
@@ -198,3 +198,15 @@ document.addEventListener('DOMContentLoaded', displayPublishers);
 
 
 
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/service-worker.js')
+        .then(registration => {
+          console.log('ServiceWorker registered: ', registration);
+        })
+        .catch(registrationError => {
+          console.log('ServiceWorker registration failed: ', registrationError);
+        });
+    });
+  }
+  
